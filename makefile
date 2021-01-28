@@ -1,11 +1,11 @@
 EXE = program.exe
-CC = gcc
+CC = g++
 
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC = $(wildcard $(SRC_DIR)/*.c)
-OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 CPPFLAGS += -Iinclude
 CFLAGS += -g -Wall
@@ -18,7 +18,7 @@ all: $(EXE)
 $(EXE):$(OBJ)
 	$(CC) $^ $(LDLIBS) -o $@
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
