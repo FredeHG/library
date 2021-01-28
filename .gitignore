@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
 
+images/*
+
 # Object files
 *.o
 *.ko
