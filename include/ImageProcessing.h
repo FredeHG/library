@@ -37,7 +37,10 @@ public:
                     );
     void readImage();
     void writeImage();
+
     void binarizeImage(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int threshold);
+    void brightnessUp(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
+    void brightnessDown(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
     virtual ~ImageProcessing();
 };
 

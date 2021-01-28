@@ -68,6 +68,15 @@ void ImageProcessing::binarizeImage(unsigned char *_inImgData, unsigned char *_o
     }
 }
 
+void ImageProcessing::brightnessUp(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness){
+    for (int i = 0; i < imgSize; i++)
+    {
+        int temp = _inImgData[i] + brightness;
+        _outImgData[i] = temp > MAX_COLOR? MAX_COLOR : temp;
+    }
+    
+}
+
 ImageProcessing::~ImageProcessing()
 {
 }

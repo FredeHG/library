@@ -12,11 +12,12 @@ int main(){
     unsigned char imgInBuffer[262144];
     unsigned char imgOutBuffer[262144];
     
-    const char imgName[]        = "images/girlface.bmp";
-    const char newImgName[]     = "images/girlfaceBinary.bmp";
+    const char imgName[]        = "images/lena512.bmp";
+    const char newImgName[]     = "images/lenaBrihtness.bmp";
     ImageProcessing *myimage    = new ImageProcessing(imgName, newImgName, &imgHeight, &imgWidth, &imgBitDepth, imgHeader, imgColorTable, imgInBuffer, imgOutBuffer);
     myimage->readImage();
-    myimage->binarizeImage(imgInBuffer, imgOutBuffer, imgHeight*imgWidth, 63);
+    int imgSize = imgWidth * imgHeight;
+    myimage->brightnessUp(imgInBuffer, imgOutBuffer, imgSize, 90);
     myimage->writeImage();
     std::cout << "Terminado!" << std::endl;
     std::cout << "Alto de la imagen: " << imgHeight << std::endl;
