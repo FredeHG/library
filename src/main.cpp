@@ -17,7 +17,7 @@ int main(){
     ImageProcessing *myimage    = new ImageProcessing(imgName, newImgName, &imgHeight, &imgWidth, &imgBitDepth, imgHeader, imgColorTable, imgInBuffer, imgOutBuffer);
     myimage->readImage();
     int imgSize = imgWidth * imgHeight;
-    myimage->brightnessUp(imgInBuffer, imgOutBuffer, imgSize, 90);
+    myimage->brightnessDown(imgInBuffer, imgOutBuffer, imgSize, 50);
     myimage->writeImage();
     std::cout << "Terminado!" << std::endl;
     std::cout << "Alto de la imagen: " << imgHeight << std::endl;

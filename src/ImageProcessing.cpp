@@ -74,8 +74,16 @@ void ImageProcessing::brightnessUp(unsigned char *_inImgData, unsigned char *_ou
         int temp = _inImgData[i] + brightness;
         _outImgData[i] = temp > MAX_COLOR? MAX_COLOR : temp;
     }
-    
 }
+
+void ImageProcessing::brightnessDown(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness){
+    for (int i = 0; i < imgSize; i++)
+    {
+        int temp = _inImgData[i] - brightness;
+        _outImgData[i] = temp < MIN_COLOR? MIN_COLOR : temp;
+    }
+}
+
 
 ImageProcessing::~ImageProcessing()
 {
