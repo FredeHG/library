@@ -6,10 +6,10 @@
 #define   MIN_COLOR             0
 #define   WHITE                 MAX_COLOR
 #define   BLACK                 MIN_COLOR
-
+#define NO_OF_GRAYLEVELS        255
 #include <iostream>
 #include <stdio.h>
-
+#include <string.h>
 
 class ImageProcessing
 {
@@ -41,6 +41,7 @@ public:
     void binarizeImage(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int threshold);
     void brightnessUp(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
     void brightnessDown(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
+    void computeHistogram(unsigned char *_imgData, int imgRows, int imgCols, float hist[], const char *output);
     virtual ~ImageProcessing();
 };
 

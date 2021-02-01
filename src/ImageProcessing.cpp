@@ -84,6 +84,30 @@ void ImageProcessing::brightnessDown(unsigned char *_inImgData, unsigned char *_
     }
 }
 
+void ImageProcessing::computeHistogram(unsigned char *_imgData, int imgRows, int imgCols, float hist[], const char *output){
+    FILE *fptr;
+    fptr = fopen(output, "w");
+    int col, row, j;
+    long int ihist[NO_OF_GRAYLEVELS], sum;
+    memset(ihist, 0, sizeof(ihist));
+    sum = 0;
+    for(row = 0; row < imgRows; row++){
+        for(col = 0; col < imgCols; col++){
+            j = *(_imgData+col+row*imgCols);
+            ihist[j] = ihist[j] + 1;
+            sum++;
+        }
+    }
+    for(int i = 0; i < NO_OF_GRAYLEVELS; i++){
+        hist[i] = (float)ihist[i]/(float)sum;
+    }
+
+    for (int i = 0; i < NO_OF_GRAYLEVELS; i++){
+        fprintf(fptr, "\n%f", hist[i]);
+    }
+    fclose(fptr);
+}
+
 
 ImageProcessing::~ImageProcessing()
 {
