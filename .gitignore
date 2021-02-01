@@ -2,6 +2,7 @@
 *.d
 
 images/*
+.vscode
 
 # Object files
 *.o
