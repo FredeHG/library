@@ -16,7 +16,7 @@ int main(){
     const char newImgName[]     = "images/cameramanopt1.bmp";
     ImageProcessing *myimage    = new ImageProcessing(imgName, newImgName, &imgHeight, &imgWidth, &imgBitDepth, imgHeader, imgColorTable, imgInBuffer, imgOutBuffer);
     myimage->readImage();
-    myimage->rotate(imgInBuffer, imgOutBuffer, 4);
+    myimage->rotateImage(imgInBuffer, imgOutBuffer, 4);
     myimage->writeImage();
     std::cout << "Terminado!" << std::endl;
     std::cout << "Alto de la imagen: " << imgHeight << std::endl;

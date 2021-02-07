@@ -134,7 +134,7 @@ void ImageProcessing::equalizeHistogram(unsigned char *_inImgData, unsigned char
 
 }
 
-void ImageProcessing::rotate(unsigned char *_inImgData, unsigned char *_outImgdata, int mode){
+void ImageProcessing::rotateImage(unsigned char *_inImgData, unsigned char *_outImgdata, int mode){
     switch (mode)
     {
     case 1:
