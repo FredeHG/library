@@ -42,6 +42,8 @@ public:
     void brightnessUp(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
     void brightnessDown(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int brightness);
     void computeHistogram(unsigned char *_imgData, int imgRows, int imgCols, float hist[], const char *output);
+    void equalizeHistogram(unsigned char *_inImgData, unsigned char *_outImgData, int imgRows, int imgCols);
+    void rotate(unsigned char *_inImgData, unsigned char *_outImgdata, int mode);
     virtual ~ImageProcessing();
 };
 

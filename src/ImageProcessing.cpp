@@ -87,14 +87,14 @@ void ImageProcessing::brightnessDown(unsigned char *_inImgData, unsigned char *_
 void ImageProcessing::computeHistogram(unsigned char *_imgData, int imgRows, int imgCols, float hist[], const char *output){
     FILE *fptr;
     fptr = fopen(output, "w");
-    int col, row, j;
+    int col, row, gray_level;
     long int ihist[NO_OF_GRAYLEVELS], sum;
     memset(ihist, 0, sizeof(ihist));
     sum = 0;
     for(row = 0; row < imgRows; row++){
         for(col = 0; col < imgCols; col++){
-            j = *(_imgData+col+row*imgCols);
-            ihist[j] = ihist[j] + 1;
+            gray_level = *(_imgData+col+row*imgCols);
+            ihist[gray_level] = ihist[gray_level] + 1;
             sum++;
         }
     }
@@ -108,6 +108,63 @@ void ImageProcessing::computeHistogram(unsigned char *_imgData, int imgRows, int
     fclose(fptr);
 }
 
+void ImageProcessing::equalizeHistogram(unsigned char *_inImgData, unsigned char *_outImgData, int imgRows, int imgCols){
+    int histeq[NO_OF_GRAYLEVELS];
+    float hist[NO_OF_GRAYLEVELS];
+    float sum;
+    const char initHist[]   = "init_hist.dat";
+    const char finalHist[]  = "final_hist.dat";
+    computeHistogram(_inImgData, imgRows, imgCols, hist, initHist);
+
+    for (int i = 0; i < NO_OF_GRAYLEVELS; i++){
+        sum = 0.0;
+        for (int j = 0; j < i; j++){
+            sum = sum+hist[j];
+        }
+        histeq[i] = (int) (NO_OF_GRAYLEVELS*sum+0.5);
+    }
+    
+    for (int row = 0; row < imgRows; row++){
+        for (int col = 0; col < imgCols; col++){
+            *(_outImgData + col + row*imgCols) = histeq[*(_inImgData+col+row*imgCols)];
+        }
+    }
+    
+    computeHistogram(_outImgData, imgRows, imgCols, hist, finalHist);
+
+}
+
+void ImageProcessing::rotate(unsigned char *_inImgData, unsigned char *_outImgdata, int mode){
+    switch (mode)
+    {
+    case 1:
+         for (int i = 0; i < *width; i++){
+            for (int j = 0; j < *height; j++){
+                _outImgdata[j*(*height) + (*height - 1 - i)] = _inImgData[i*(*height) + j];
+            }
+        }
+        break;
+
+    case 2:
+        for (int i = 0; i < *width; i++){
+            for (int j = 0; j < *height; j++){
+                _outImgdata[j**width + i] = _inImgData[i**height + j];
+            }
+        }
+        break;
+     case 3:
+        for (int i = 0; i < *width; i++){
+            for (int j = 0; j < *height; j++){
+                _outImgdata[(*width - 1 - i)**height + j] = _inImgData[i**height + j];
+            }
+        }
+        break;
+    default:
+        std::cout << "Opcion invalida!" << std::endl;
+        exit(0);
+        break;
+    }
+}
 
 ImageProcessing::~ImageProcessing()
 {
