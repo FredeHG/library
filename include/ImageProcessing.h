@@ -44,6 +44,7 @@ public:
     void computeHistogram(unsigned char *_imgData, int imgRows, int imgCols, float hist[], const char *output);
     void equalizeHistogram(unsigned char *_inImgData, unsigned char *_outImgData, int imgRows, int imgCols);
     void rotateImage(unsigned char *_inImgData, unsigned char *_outImgdata, int mode);
+    void getImageNegative(unsigned char *_inImgData, unsigned char* _outImgData);
     virtual ~ImageProcessing();
 };
 

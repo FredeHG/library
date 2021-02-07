@@ -166,6 +166,14 @@ void ImageProcessing::rotateImage(unsigned char *_inImgData, unsigned char *_out
     }
 }
 
+void ImageProcessing::getImageNegative(unsigned char *_inImgData, unsigned char* _outImgData){
+    for(int i = 0; i < *height;i++){
+        for(int j = 0; j < *width; j++){
+           _outImgData[i**width + j] = 255 - _inImgData[i**width + j];
+        }
+    }
+}
+
 ImageProcessing::~ImageProcessing()
 {
 }
